@@ -1,12 +1,8 @@
 import { combineReducers } from "redux";
-import frozenReducer from "./frozenReducer";
-import produceReducer from "./produceReducer";
-import meatReducer from "./meatReducer";
+import weatherReducer from "./weatherReducer";
 
 const rootReducer = combineReducers({
-  frozen: frozenReducer,
-  produce: produceReducer,
-  meat: meatReducer,
+  weather: weatherReducer,
 });
 
 export default rootReducer;

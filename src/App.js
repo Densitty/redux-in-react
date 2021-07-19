@@ -10,11 +10,9 @@ import { Provider } from "react-redux";
 import rootReducer from "./reducers/rootReducer";
 
 // components
-import FrozenDept from "./components/FrozenDept";
-import ProduceDept from "./components/ProduceDept";
-import MeatDept from "./components/MeatDept";
-import NavBar from "./components/NavBar";
-import Main from "./components/Main";
+
+import Weather from "./Weather";
+import WarmOrNot from "./WarmOrNot";
 
 const theStore = createStore(rootReducer);
 
@@ -23,11 +21,8 @@ function App() {
     <Router>
       <Provider store={theStore}>
         <div className="App">
-          <Route path="/" component={NavBar} />
-          <Route path="/Main" component={Main} />
-          <Route path="/frozen-dept" component={FrozenDept} />
-          <Route path="/produce-dept" component={ProduceDept} />
-          <Route path="/meat-dept" component={MeatDept} />
+          <WarmOrNot />
+          <Weather />
         </div>
       </Provider>
     </Router>
