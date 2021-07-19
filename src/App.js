@@ -1,66 +1,36 @@
 import React from "react";
-// components
-import Navbar from "./components/Navbar";
-import CartContainer from "./components/CartContainer";
-// items
-import cartItems from "./cart-items";
-
+import { BrowserRouter as Router, Route } from "react-router-dom";
 // redux stuff
-
 // store - stores data (something like state)
 import { createStore } from "redux";
-// import { DECREASE, INCREASE } from "./actions";
-import reducer from "./reducer";
 // react-redux - Provider - wraps app , connect - used in components
 import { Provider } from "react-redux";
 
-// initial store
-const initialStore = { cart: cartItems, total: 0, amount: 0 };
+// store manager => rootReducer
+import rootReducer from "./reducers/rootReducer";
 
-/* function reducer(state, action) {
-  console.log({ state, action });
-  if (action.type === DECREASE) {
-    // state.count = state.count - 1 // never mutate state
-    // Object.assign({}, state) is same as {...state}
-    return {
-      ...state, 
-      count: state.count - 1,
-    };
-  }
+// components
+import FrozenDept from "./components/FrozenDept";
+import ProduceDept from "./components/ProduceDept";
+import MeatDept from "./components/MeatDept";
+import NavBar from "./components/NavBar";
+import Main from "./components/Main";
 
-  if (action.type === INCREASE) {
-    return {
-      ...state,
-      count: state.count + 1,
-    };
-  }
+const theStore = createStore(rootReducer);
 
-  if (action.type === "RESET") {
-    return {
-      ...state,
-      count: 0,
-    };
-  }
-  // (old) state is what a reducer must return
-  return state;
-} */
-
-const store = createStore(
-  reducer,
-  /* initialStore, */
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
-
-// after store is initialized, create a dispatch method (send actions to the store)
-// action (an object) - must have TYPE property to show which kind of action we want to undertake b ased of functionality of our app
-
-// console.log(store.getState());
 function App() {
   return (
-    <Provider store={store}>
-      <Navbar />
-      <CartContainer />
-    </Provider>
+    <Router>
+      <Provider store={theStore}>
+        <div className="App">
+          <Route path="/" component={NavBar} />
+          <Route path="/Main" component={Main} />
+          <Route path="/frozen-dept" component={FrozenDept} />
+          <Route path="/produce-dept" component={ProduceDept} />
+          <Route path="/meat-dept" component={MeatDept} />
+        </div>
+      </Provider>
+    </Router>
   );
 }
 
