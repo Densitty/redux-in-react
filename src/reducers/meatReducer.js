@@ -29,6 +29,14 @@ const meatReducer = (state = seedData, action) => {
     return newState;
   }
 
+  if (action.type === "clearInventory") {
+    const newState = [...state];
+    newState.forEach((item, i) => {
+      item.quantity = 0;
+    });
+    return newState;
+  }
+
   return state;
 };
 

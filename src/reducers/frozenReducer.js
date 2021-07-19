@@ -40,7 +40,14 @@ const frozenReducer = (state = seedData, action) => {
     } else if (action.payload.operation === "-") {
       newState[action.payload.id].quantity--;
     }
+    return newState;
+  }
 
+  if (action.type === "clearInventory") {
+    const newState = [...state];
+    newState.forEach((item, i) => {
+      item.quantity = 0;
+    });
     return newState;
   }
 

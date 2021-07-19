@@ -20,16 +20,21 @@ const seedData = [
 const produceReducer = (state = seedData, action) => {
   console.log("Produce reducer is running");
   console.log(action);
+  const newState = [...state];
 
   switch (action.type) {
     case "updateProduce":
-      const newState = [...state];
       if (action.payload.operation === "+") {
         newState[action.payload.id].quantity++;
       } else if (action.payload.operation === "-") {
         newState[action.payload.id].quantity--;
       }
+      return newState;
 
+    case "clearInventory":
+      newState.forEach((item, i) => {
+        item.quantity = 0;
+      });
       return newState;
 
     default:
