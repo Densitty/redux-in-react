@@ -1,4 +1,5 @@
-export default (state = {}, action) => {
+const weatherReducer = (state = {}, action) => {
+  console.log(action.type);
   if (action.type === "cityUpdate") {
     console.log(action.payload);
     return action.payload;
@@ -6,3 +7,5 @@ export default (state = {}, action) => {
     return state;
   }
 };
+
+export default weatherReducer;
